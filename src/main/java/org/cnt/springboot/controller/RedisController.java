@@ -22,6 +22,12 @@ public class RedisController {
 	
 	@GetMapping("/show")
 	public String show() {
-		return redisTemplate + "|" + stringRedisTemplate;
+		return redisTemplate + "<br />" + stringRedisTemplate;
+	}
+	
+	@GetMapping("/test")
+	public String test() {
+		stringRedisTemplate.opsForValue().set("name", "李新杰");
+		return stringRedisTemplate.opsForValue().get("name");
 	}
 }
