@@ -1,0 +1,16 @@
+server:
+  servlet:
+    context-path: /cnt-springboot
+
+spring:
+  redis:
+    host: 117.159.
+    port: 6379
+    password: 
+    timeout: 3000
+    lettuce:
+      pool:
+        max-active: 1000
+        max-idle: 100
+        min-idle: 10
+        max-wait: 3000
