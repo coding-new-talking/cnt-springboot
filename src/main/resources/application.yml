@@ -2,6 +2,42 @@ server:
   servlet:
     context-path: /cnt-springboot
 
+sngenerator:
+  generators: first,second,third
+  first: 
+    bean-name: first
+    init-num: 10000
+    step: 1
+    max-num: 0
+  second:
+    bean-name: second
+    init-num: 1000
+    step: 1
+    max-num: 0
+  third: 
+    bean-name: third
+    init-num: 100
+    step: 1
+    max-num: 0
+    
+groupsngenerator:
+  generators: first,second,third
+  first: 
+    bean-name: gfirst
+    init-num: 10000
+    step: 1
+    max-num: 0
+  second:
+    bean-name: gsecond
+    init-num: 1000
+    step: 1
+    max-num: 0
+  third: 
+    bean-name: gthird
+    init-num: 100
+    step: 1
+    max-num: 0
+
 spring:
   redis:
     host: 127.0.0.1
