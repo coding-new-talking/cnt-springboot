@@ -23,18 +23,18 @@ public class RedisController {
 	private StringRedisTemplate stringRedisTemplate;
 	
 	@Autowired
-	private SnGenerator first;
+	private SnGenerator firstSn;
 	@Autowired
-	private SnGenerator second;
+	private SnGenerator secondSn;
 	@Autowired
-	private SnGenerator third;
+	private SnGenerator thirdSn;
 	
 	@Autowired
-	private GroupSnGenerator gfirst;
+	private GroupSnGenerator gfirstSn;
 	@Autowired
-	private GroupSnGenerator gsecond;
+	private GroupSnGenerator gsecondSn;
 	@Autowired
-	private GroupSnGenerator gthird;
+	private GroupSnGenerator gthirdSn;
 	
 	@GetMapping("/show")
 	public String show() {
@@ -49,20 +49,21 @@ public class RedisController {
 	
 	@GetMapping("/sng")
 	public String sng() {
-		return first.nextNum() + "<br/>" + second.nextNum()
-			+ "<br/>" + third.nextNum();
+		return "<br/>firstSn=" + firstSn.nextNum()
+				+ "<br/>secondSn=" + secondSn.nextNum()
+				+ "<br/>thirdSn=" + thirdSn.nextNum();
 	}
 	
 	@GetMapping("/gsng")
 	public String gsng() {
-		return gfirst.nextNum("f1") + "<br/>"
-				+ gfirst.nextNum("f2") + "<br/>"
-				+ gfirst.nextNum("f3") + "<br/><br/>"
-				+ gsecond.nextNum("s1") + "<br/>"
-				+ gsecond.nextNum("s2") + "<br/>"
-				+ gsecond.nextNum("s3") + "<br/><br/>"
-				+ gthird.nextNum("t1") + "<br/>"
-				+ gthird.nextNum("t2") + "<br/>"
-				+ gthird.nextNum("t3");
+		return "gfirstSn.f1 = " + gfirstSn.nextNum("f1") + "<br/>"
+				+ "gfirstSn.f2 = " + gfirstSn.nextNum("f2") + "<br/>"
+				+ "gfirstSn.f3 = " + gfirstSn.nextNum("f3") + "<br/><br/>"
+				+ "gsecondSn.s1 = " + gsecondSn.nextNum("s1") + "<br/>"
+				+ "gsecondSn.s2 = " + gsecondSn.nextNum("s2") + "<br/>"
+				+ "gsecondSn.s3 = " + gsecondSn.nextNum("s3") + "<br/><br/>"
+				+ "gthirdSn.t1 = " + gthirdSn.nextNum("t1") + "<br/>"
+				+ "gthirdSn.t2 = " + gthirdSn.nextNum("t2") + "<br/>"
+				+ "gthirdSn.t3 = " + gthirdSn.nextNum("t3");
 	}
 }

@@ -26,17 +26,17 @@ idgenerator:
 sngenerator:
   generators: first,second,third
   first: 
-    bean-name: first
+    bean-name: firstSn
     init-num: 10000
     step: 1
     max-num: 0
   second:
-    bean-name: second
+    bean-name: secondSn
     init-num: 1000
     step: 1
     max-num: 0
   third: 
-    bean-name: third
+    bean-name: thirdSn
     init-num: 100
     step: 1
     max-num: 0
@@ -44,17 +44,17 @@ sngenerator:
 groupsngenerator:
   generators: first,second,third
   first: 
-    bean-name: gfirst
+    bean-name: gfirstSn
     init-num: 10000
     step: 1
     max-num: 0
   second:
-    bean-name: gsecond
+    bean-name: gsecondSn
     init-num: 1000
     step: 1
     max-num: 0
   third: 
-    bean-name: gthird
+    bean-name: gthirdSn
     init-num: 100
     step: 1
     max-num: 0
