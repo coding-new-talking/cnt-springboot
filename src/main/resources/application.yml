@@ -2,6 +2,27 @@ server:
   servlet:
     context-path: /cnt-springboot
 
+idgenerator:
+  generators: first,second,third
+  first:
+    bean-name: firstId
+    base-time: 2019-01-01
+    node-bits: 3
+    node-num: ${nodeNum:0}
+    cycle-bits: 16
+  second:
+    bean-name: secondId
+    base-time: 2019-03-01
+    node-bits: 3
+    node-num: ${nodeNum:0}
+    cycle-bits: 16
+  third:
+    bean-name: thirdId
+    base-time: 2019-05-01
+    node-bits: 3
+    node-num: ${nodeNum:0}
+    cycle-bits: 16
+    
 sngenerator:
   generators: first,second,third
   first: 

@@ -19,4 +19,9 @@ public class BeanDefinitionRegistrySource {
 	public static BeanDefinitionRegistryPostProcessor groupSnGeneratorRegistry() {
 		return new GroupSnGeneratorRegistry();
 	}
+	
+	@Bean
+	public static BeanDefinitionRegistryPostProcessor idGeneratorRegistry() {
+		return new IdGeneratorRegistry();
+	}
 }
