@@ -3,7 +3,7 @@ server:
     context-path: /cnt-springboot
 
 idgenerator:
-  generators: first,second,third
+#  generators: first,second,third
   first:
     bean-name: firstId
     base-time: 2019-01-01

@@ -4,6 +4,8 @@ import java.util.StringJoiner;
 import java.util.stream.Stream;
 
 import org.cnt.springboot.sngene.RedisGroupSnGenerator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
@@ -18,6 +20,8 @@ import org.springframework.core.env.Environment;
  */
 public class GroupSnGeneratorRegistry implements BeanDefinitionRegistryPostProcessor, EnvironmentAware {
 
+	private static final Logger log = LoggerFactory.getLogger(GroupSnGeneratorRegistry.class);
+	
 	private Environment environment;
 
 	@Override
@@ -27,7 +31,7 @@ public class GroupSnGeneratorRegistry implements BeanDefinitionRegistryPostProce
 	@Override
 	public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
 		GroupSnGeneInfo[] geneInfos = parseGroupSnGeneInfos();
-		System.out.println(logInfo(geneInfos));
+		log.info(logInfo(geneInfos));
 		for (GroupSnGeneInfo geneInfo : geneInfos) {
 			BeanDefinitionBuilder bdb = BeanDefinitionBuilder.genericBeanDefinition(RedisGroupSnGenerator.class);
 			bdb.addConstructorArgValue(geneInfo.getKeyName());
@@ -46,6 +50,9 @@ public class GroupSnGeneratorRegistry implements BeanDefinitionRegistryPostProce
 
 	private GroupSnGeneInfo[] parseGroupSnGeneInfos() {
 		String prefix = "groupsngenerator";
+		if (!environment.containsProperty(prefix + ".generators")) {
+			return new GroupSnGeneInfo[0];
+		}
 		String[] generators = environment.getProperty(prefix + ".generators", String[].class);
 		GroupSnGeneInfo[] infos = new GroupSnGeneInfo[generators.length];
 		for (int i = 0; i < generators.length; i++) {

@@ -2,6 +2,8 @@ package org.cnt.springboot.idgene;
 
 import java.util.Calendar;
 
+import org.cnt.springboot.utils.Assert;
+
 /**
  * <p>基于snowflake的实现
  * <p>单节点每秒最大并发数65535
@@ -29,16 +31,22 @@ public class CycleRadixIdGenerator implements IdGenerator {
 	
 	public CycleRadixIdGenerator(String baseTime, int nodeBits, int nodeNum, int cycleBits) {
 		this.baseTime = initBaseTime(baseTime);
-		assert this.baseTime < System.currentTimeMillis();
 		
-		assert nodeBits >= 3;
+		Assert.check(this.baseTime < System.currentTimeMillis(), "this.baseTime({}) < System.currentTimeMillis()({})",
+				this.baseTime, System.currentTimeMillis());
+		
+		Assert.check(nodeBits >= 3, "nodeBits({}) >= 3", nodeBits);
+		
 		int maxNodeNum = (int)(Math.pow(2, nodeBits) - 1);
-		assert nodeNum >= 0;
-		assert nodeNum <= maxNodeNum;
+		
+		Assert.check(nodeNum >= 0, "nodeNum({}) >= 0", nodeNum);
+		Assert.check(nodeNum <= maxNodeNum, "nodeNum({}) <= maxNodeNum({})", nodeNum, maxNodeNum);
+		
 		this.nodeBits = nodeBits;
 		this.nodeNum = nodeNum;
 		
-		assert cycleBits >= 16;
+		Assert.check(cycleBits >= 16, "cycleBits({}) >= 16", cycleBits);
+		
 		this.cycleBits = cycleBits;
 		this.maxCycleNum = (long)(Math.pow(2, cycleBits) - 1);
 	}

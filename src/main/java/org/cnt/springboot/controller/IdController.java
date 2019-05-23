@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IdController {
 
-	@Autowired
+	@Autowired(required = false)
 	private IdGenerator firstId;
 	
-	@Autowired
+	@Autowired(required = false)
 	private IdGenerator secondId;
 	
-	@Autowired
+	@Autowired(required = false)
 	private IdGenerator thirdId;
 	
 	@RequestMapping("/test")

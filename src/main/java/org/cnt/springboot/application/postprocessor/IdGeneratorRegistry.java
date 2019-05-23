@@ -4,6 +4,8 @@ import java.util.StringJoiner;
 import java.util.stream.Stream;
 
 import org.cnt.springboot.idgene.CycleRadixIdGenerator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
@@ -18,6 +20,8 @@ import org.springframework.core.env.Environment;
  */
 public class IdGeneratorRegistry implements BeanDefinitionRegistryPostProcessor, EnvironmentAware {
 
+	private static final Logger log = LoggerFactory.getLogger(IdGeneratorRegistry.class);
+	
 	private Environment environment;
 
 	@Override
@@ -27,7 +31,7 @@ public class IdGeneratorRegistry implements BeanDefinitionRegistryPostProcessor,
 	@Override
 	public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
 		IdGeneInfo[] geneInfos = parseIdGeneInfos();
-		System.out.println(logInfo(geneInfos));
+		log.info(logInfo(geneInfos));
 		for (IdGeneInfo geneInfo : geneInfos) {
 			BeanDefinitionBuilder bdb = BeanDefinitionBuilder.genericBeanDefinition(CycleRadixIdGenerator.class);
 			bdb.addConstructorArgValue(geneInfo.getBaseTime());
@@ -45,6 +49,9 @@ public class IdGeneratorRegistry implements BeanDefinitionRegistryPostProcessor,
 
 	private IdGeneInfo[] parseIdGeneInfos() {
 		String prefix = "idgenerator";
+		if (!environment.containsProperty(prefix + ".generators")) {
+			return new IdGeneInfo[0];
+		}
 		String[] generators = environment.getProperty(prefix + ".generators", String[].class);
 		IdGeneInfo[] infos = new IdGeneInfo[generators.length];
 		for (int i = 0; i < generators.length; i++) {
