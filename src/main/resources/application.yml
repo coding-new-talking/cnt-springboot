@@ -1,7 +1,22 @@
 server:
   servlet:
     context-path: /cnt-springboot
-
+    
+elasticjob:
+  enabled: true
+  zookeeper-config:
+    server-lists: 127.0.0.1:2181
+    namespace: cnt.springboot
+  simple-job-configs:
+    firstSimpleJob:
+      job-core-config:
+        job-name: firstSimpleJob
+        cron: 0/20 * * * * ?
+        sharding-total-count: 3
+        failover: true
+      lite-job-config:
+        overwrite: true
+            
 idgenerator:
 #  generators: first,second,third
   first:

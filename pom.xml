@@ -17,6 +17,9 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<zookeeper.version>3.4.14</zookeeper.version>
+		<curator.version>4.2.0</curator.version>
+		<elasticjob.version>2.1.5</elasticjob.version>
 	</properties>
 
 	<dependencies>
@@ -54,6 +57,109 @@
 			<scope>runtime</scope>
 		</dependency>
 		 -->
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>${zookeeper.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-framework</artifactId>
+			<version>${curator.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+                	<artifactId>slf4j-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+                	<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>	
+		</dependency>
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-client</artifactId>
+			<version>${curator.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+                	<artifactId>slf4j-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+                	<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>			
+		</dependency>
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-recipes</artifactId>
+			<version>${curator.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+                	<artifactId>slf4j-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+                	<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.zookeeper</groupId>
+					<artifactId>zookeeper</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		 <dependency>
+		    <groupId>com.dangdang</groupId>
+		    <artifactId>elastic-job-lite-core</artifactId>
+		    <version>${elasticjob.version}</version>
+		    <exclusions>
+		    	<exclusion>
+			    	<groupId>org.apache.curator</groupId>
+	                <artifactId>curator-framework</artifactId>
+		    	</exclusion>
+		    	<exclusion>
+			    	<groupId>org.apache.curator</groupId>
+	                <artifactId>curator-client</artifactId>
+		    	</exclusion>
+		    	<exclusion>
+			    	<groupId>org.apache.curator</groupId>
+	                <artifactId>curator-recipes</artifactId>
+		    	</exclusion>
+		    </exclusions>
+		</dependency>
+		<dependency>
+		    <groupId>com.dangdang</groupId>
+		    <artifactId>elastic-job-lite-spring</artifactId>
+		    <version>${elasticjob.version}</version>
+		    <exclusions>
+		    	<exclusion>
+			    	<groupId>org.apache.curator</groupId>
+	                <artifactId>curator-framework</artifactId>
+		    	</exclusion>
+		    	<exclusion>
+			    	<groupId>org.apache.curator</groupId>
+	                <artifactId>curator-client</artifactId>
+		    	</exclusion>
+		    	<exclusion>
+			    	<groupId>org.apache.curator</groupId>
+	                <artifactId>curator-recipes</artifactId>
+		    	</exclusion>
+		    </exclusions>
+		</dependency>
+		 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
